@@ -14,8 +14,8 @@ Guarda en el directorio /DVWA.
 /DVWA/mysql/Dockerfile
 Crear un Dockerfile en el directorio examen/bWAPP/mysql.
 Las funciones de este Dockerfile son:
-Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
-Generar una contraseña del usuario root.
+	Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
+	Generar una contraseña del usuario root.
 
 	$_DVWA = array();
 	$_DVWA[ 'db_server' ]   = 'dvwams';
@@ -25,10 +25,10 @@ Generar una contraseña del usuario root.
 	$_DVWA[ 'db_port'] = '3306';
 
 Modificar el /DVWA/DVWA/config/config.inc.php.disk. 
-db_server es el nombre de contenedor de mysql que hemos especificado en el archivo docker-compose.yml.
-db_username es el nombre de usuario que quieres conectar. Tiene que ser el usuario root, sino no permite entrar en la base de datos.
-db_paasword es la contraseña de usuario que quieres conectar.
-db_name es el nombre de la base de datos que quieres conectar.  Poner dvwa.
+	db_server es el nombre de contenedor de mysql que hemos especificado en el archivo docker-compose.yml.
+	db_username es el nombre de usuario que quieres conectar. Tiene que ser el usuario root, sino no permite entrar en la base de datos.
+	db_paasword es la contraseña de usuario que quieres conectar.
+	db_name es el nombre de la base de datos que quieres conectar.  Poner dvwa.
 
 	version: '3.2'
 
@@ -55,8 +55,8 @@ db_name es el nombre de la base de datos que quieres conectar.  Poner dvwa.
 
 /DVWA/docker-compose.yml
 Las funciones del docker compose son:
-Construir una imagen dvwapweb con el nombre de contenedor dvwaweb, el puerto es 8080:80 u utiliza la red nbtnetx.
-Construir una imagen dvwams con el nombre de contenedor dvwams u utiliza la red nbtnetx.
+	Construir una imagen dvwapweb con el nombre de contenedor dvwaweb, el puerto es 8080:80 u utiliza la red nbtnetx.
+	Construir una imagen dvwams con el nombre de contenedor dvwams u utiliza la red nbtnetx.
 
 En el navegador poner la IP y el puerto. Para crear una base de datos, hay que ir al Setup/Reset DB.
 
@@ -83,20 +83,21 @@ Guarda en el directorio /dWAPP.
 examen/bWAPP
 Crear un Dockerfile en el directorio examen/bWAPP. 
 Las funciones de este Dockerfile son : 
-Crear un apache de php7.4, además instala mysqli, pdo, libpng-dev, gd y actualizar los paquetes.  
-Copiar el directorio bWAPP en el directorio de contenido, el que muestra la imagen en la página web.
-Modificar los permisos de las carpetas de contenido para necesitar ejecutar el programa.
-Exporté el puerto 80.
+	Crear un apache de php7.4, además instala mysqli, pdo, libpng-dev, gd y actualizar los paquetes.  
+	Copiar el directorio bWAPP en el directorio de contenido, el que muestra la imagen en la página web.
+	Modificar los permisos de las carpetas de contenido para necesitar ejecutar el programa.
+	Exporté el puerto 80.
 
-FROM mysql:5.7
-LABEL mantainer=zxiang@iessacolomina.es
-ENV MYSQL_ROOT_PASSWORD=root
+	FROM mysql:5.7
+	LABEL mantainer=zxiang@iessacolomina.es
+	ENV MYSQL_ROOT_PASSWORD=root
 
 examen/bWAPP/mysql
 Crear un Dockerfile en el directorio examen/bWAPP/mysql.
-Las funciones de este Dockerfile son:
-Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
-Generar una contraseña del usuario root.
+	Las funciones de este Dockerfile son:
+	Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
+	Generar una contraseña del usuario root.
+	
 	// Database connection settings
 	$db_server = "bwappms";
 	$db_username = "root";
@@ -134,8 +135,8 @@ db_name es el nombre de la base de datos que quieres conectar. Tiene que ser bWA
 
 /bWAPP/docker-compose.yml
 Las funciones del docker compose son:
-Construir una imagen bwappweb con el nombre de contenedor bwappweb, el puerto es 8080:80 u utiliza la red nbtnetx.
-Construir una imagen bwappwms con el nombre de contenedor bwappms u utiliza la red nbtnetx.
+	Construir una imagen bwappweb con el nombre de contenedor bwappweb, el puerto es 8080:80 u utiliza la red nbtnetx.
+	Construir una imagen bwappwms con el nombre de contenedor bwappms u utiliza la red nbtnetx.
 
 En la página pone install.php para generar una base de datos automática.
 
@@ -158,10 +159,10 @@ Guarda en el directorio /OWASP.
 /OWASP /Dockerfile
 /OWASP /multillidae está toda la aplicación OWASP 
 Las funciones de este Dockerfile son : 
-Crear un apache de php7.4, además instala mysqli, pdo, libpng-dev, gd y actualizar los paquetes.  
-Copiar el directorio OWASP en el directorio de contenido, el que muestra la imagen en la página web.
-Modificar las carpetas de contenido para necesitar ejecutar el programa.
-Exporté el puerto 80.
+	Crear un apache de php7.4, además instala mysqli, pdo, libpng-dev, gd y actualizar los paquetes.  
+	Copiar el directorio OWASP en el directorio de contenido, el que muestra la imagen en la página web.
+	Modificar las carpetas de contenido para necesitar ejecutar el programa.
+	Exporté el puerto 80.
 
 	FROM mysql:5.7
 	LABEL mantainer=zxiang@iessacolomina.es
@@ -267,7 +268,10 @@ Añadir proxypass y proxypassreverse en el archivo 000-default.conf o puede crea
 Para activar la configuración con a2ensite ejemplo.conf. 
 Para ver la configuración, ir al directorio sites-enable.
 
-Recargar apache o reiniciar apache con el comando,
+Recargar apache
+sudo service apache2 reload
+
+Reiniciar apache con el comando
 sudo service apache2 restart.
 
 En la página web poner la IP y el nombre de la aplicación.
