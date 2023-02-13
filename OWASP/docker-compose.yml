@@ -1,0 +1,21 @@
+version: '3.2'
+
+services:
+
+  owaspweb:
+    build:
+      context: './'
+    networks:
+       - nbtnetx
+    ports:
+       - 8082:80
+    container_name: owaspweb
+
+  owaspms:
+    build:
+      context: './mysql/'
+    networks:
+       - nbtnetx
+    container_name: owaspms
+networks:
+  nbtnetx:

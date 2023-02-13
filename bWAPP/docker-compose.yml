@@ -1,0 +1,21 @@
+version: '3.2'
+
+services:
+
+  bwappweb:
+    build:
+      context: './'
+    networks:
+       - nbtnetx
+    ports:
+       - 8081:80
+    container_name: bwappweb
+
+  bwappms:
+    build:
+      context: './mysql/'
+    networks:
+       - nbtnetx
+    container_name: bwappms
+networks:
+  nbtnetx:
