@@ -80,7 +80,7 @@ Guarda en el directorio /dWAPP.
 	RUN chmod 777 /var/www/html/bWAPP/logs/
 	EXPOSE 80
 
-examen/bWAPP
+/bWAPP
 Crear un Dockerfile en el directorio examen/bWAPP. 
 Las funciones de este Dockerfile son : 
 	Crear un apache de php7.4, además instala mysqli, pdo, libpng-dev, gd y actualizar los paquetes.  
@@ -92,7 +92,7 @@ Las funciones de este Dockerfile son :
 	LABEL mantainer=zxiang@iessacolomina.es
 	ENV MYSQL_ROOT_PASSWORD=root
 
-examen/bWAPP/mysql
+/bWAPP/mysql
 Crear un Dockerfile en el directorio examen/bWAPP/mysql.
 	Las funciones de este Dockerfile son:
 	Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
