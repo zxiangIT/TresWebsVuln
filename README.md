@@ -7,9 +7,9 @@ Descomprimir el archivo bWAPP que hemos descargado en la página web.
 https://github.com/digininja/DVWA
 Guarda en el directorio /DVWA.
 
-FROM mysql:5.7
-LABEL mantainer=zxiang@iessacolomina.es
-ENV MYSQL_ROOT_PASSWORD=root
+	FROM mysql:5.7
+	LABEL mantainer=zxiang@iessacolomina.es
+	ENV MYSQL_ROOT_PASSWORD=root
 
 /DVWA/mysql/Dockerfile
 Crear un Dockerfile en el directorio examen/bWAPP/mysql.
@@ -17,12 +17,12 @@ Las funciones de este Dockerfile son:
 Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
 Generar una contraseña del usuario root.
 
-$_DVWA = array();
-$_DVWA[ 'db_server' ]   = 'dvwams';
-$_DVWA[ 'db_database' ] = 'dvwa';
-$_DVWA[ 'db_user' ]     = 'root';
-$_DVWA[ 'db_password' ] = 'root';
-$_DVWA[ 'db_port'] = '3306';
+	$_DVWA = array();
+	$_DVWA[ 'db_server' ]   = 'dvwams';
+	$_DVWA[ 'db_database' ] = 'dvwa';
+	$_DVWA[ 'db_user' ]     = 'root';
+	$_DVWA[ 'db_password' ] = 'root';
+	$_DVWA[ 'db_port'] = '3306';
 
 Modificar el /DVWA/DVWA/config/config.inc.php.disk. 
 db_server es el nombre de contenedor de mysql que hemos especificado en el archivo docker-compose.yml.
@@ -30,27 +30,27 @@ db_username es el nombre de usuario que quieres conectar. Tiene que ser el usuar
 db_paasword es la contraseña de usuario que quieres conectar.
 db_name es el nombre de la base de datos que quieres conectar.  Poner dvwa.
 
-version: '3.2'
+	version: '3.2'
 
-services:
+	services:
 
-  dvwaweb:
-	build:
-  	context: './'
+		dvwaweb:
+		build:
+			context: './'
+		networks:
+			- nbtnetx
+		ports:
+			- 8080:80
+		container_name: dvwaweb
+
+		dvwams:
+		build:
+			context: './mysql/'
+		networks:
+			- nbtnetx
+		container_name: dvwams
 	networks:
-   	- nbtnetx
-	ports:
-   	- 8080:80
-	container_name: dvwaweb
-
-  dvwams:
-	build:
-  	context: './mysql/'
-	networks:
-   	- nbtnetx
-	container_name: dvwams
-networks:
-  nbtnetx:
+		nbtnetx:
 
 
 /DVWA/docker-compose.yml
@@ -67,18 +67,18 @@ En el navegador poner la IP y el puerto. Para crear una base de datos, hay que i
 Descomprimir el archivo bWAPP que hemos descargado en la página web https://sourceforge.net/projects/bwapp/files/bWAPP/
 Guarda en el directorio /dWAPP.
 
-#Web with php version 7.4
-FROM php:7.4-apache
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install pdo pdo_mysql
-RUN apt-get update && apt-get -y install libpng-dev
-RUN docker-php-ext-install gd
-COPY ./bWAPP/ /var/www/html/bWAPP/
-RUN chmod 777 /var/www/html/bWAPP/passwords/
-RUN chmod 777 /var/www/html/bWAPP/images/
-RUN chmod 777 /var/www/html/bWAPP/documents/
-RUN chmod 777 /var/www/html/bWAPP/logs/
-EXPOSE 80
+	#Web with php version 7.4
+	FROM php:7.4-apache
+	RUN docker-php-ext-install mysqli
+	RUN docker-php-ext-install pdo pdo_mysql
+	RUN apt-get update && apt-get -y install libpng-dev
+	RUN docker-php-ext-install gd
+	COPY ./bWAPP/ /var/www/html/bWAPP/
+	RUN chmod 777 /var/www/html/bWAPP/passwords/
+	RUN chmod 777 /var/www/html/bWAPP/images/
+	RUN chmod 777 /var/www/html/bWAPP/documents/
+	RUN chmod 777 /var/www/html/bWAPP/logs/
+	EXPOSE 80
 
 examen/bWAPP
 Crear un Dockerfile en el directorio examen/bWAPP. 
@@ -97,11 +97,11 @@ Crear un Dockerfile en el directorio examen/bWAPP/mysql.
 Las funciones de este Dockerfile son:
 Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
 Generar una contraseña del usuario root.
-// Database connection settings
-$db_server = "bwappms";
-$db_username = "root";
-$db_password = "root";
-$db_name = "bWAPP";
+	// Database connection settings
+	$db_server = "bwappms";
+	$db_username = "root";
+	$db_password = "root";
+	$db_name = "bWAPP";
 
 Modificar el /bWAPP/bWAPP/admin/settings.php. 
 db_server es el nombre de contenedor de mysql que hemos especificado en el archivo docker-compose.yml.
@@ -109,27 +109,27 @@ db_username es el nombre de usuario que quieres conectar. Tiene que ser el usuar
 db_paasword es la contraseña de usuario que quieres conectar.
 db_name es el nombre de la base de datos que quieres conectar. Tiene que ser bWAPP, no hay que modificar nada.
 
-version: '3.2'
+	version: '3.2'
 
-services:
+	services:
 
-  bwappweb:
-	build:
-  	context: './'
+		bwappweb:
+		build:
+			context: './'
+		networks:
+			- nbtnetx
+		ports:
+			- 8081:80
+		container_name: bwappweb
+
+		bwappms:
+		build:
+			context: './mysql/'
+		networks:
+			- nbtnetx
+		container_name: bwappms
 	networks:
-   	- nbtnetx
-	ports:
-   	- 8081:80
-	container_name: bwappweb
-
-  bwappms:
-	build:
-  	context: './mysql/'
-	networks:
-   	- nbtnetx
-	container_name: bwappms
-networks:
-  nbtnetx:
+		nbtnetx:
 
 
 /bWAPP/docker-compose.yml
@@ -137,8 +137,7 @@ Las funciones del docker compose son:
 Construir una imagen bwappweb con el nombre de contenedor bwappweb, el puerto es 8080:80 u utiliza la red nbtnetx.
 Construir una imagen bwappwms con el nombre de contenedor bwappms u utiliza la red nbtnetx.
 
-
-Hay que instalar una base de datos automática.
+En la página pone install.php para generar una base de datos automática.
 
 Entrar el usuario bee y la contraseña bug. 
 
@@ -147,16 +146,14 @@ Descomprimir el archivo OWASP que hemos descargado en la página web.
 https://github.com/webpwnized/mutillidae
 Guarda en el directorio /OWASP.
 
-#Web with php version 7.4
-FROM php:7.4-apache
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install pdo pdo_mysql
-RUN apt-get update && apt-get -y install libpng-dev
-RUN docker-php-ext-install gd
-COPY ./mutillidae/ /var/www/html/mutillidae/
-
-EXPOSE 80
-
+	#Web with php version 7.4
+	FROM php:7.4-apache
+	RUN docker-php-ext-install mysqli
+	RUN docker-php-ext-install pdo pdo_mysql
+	RUN apt-get update && apt-get -y install libpng-dev
+	RUN docker-php-ext-install gd
+	COPY ./mutillidae/ /var/www/html/mutillidae/
+	EXPOSE 80
 
 /OWASP /Dockerfile
 /OWASP /multillidae está toda la aplicación OWASP 
@@ -166,10 +163,9 @@ Copiar el directorio OWASP en el directorio de contenido, el que muestra la imag
 Modificar las carpetas de contenido para necesitar ejecutar el programa.
 Exporté el puerto 80.
 
-
-FROM mysql:5.7
-LABEL mantainer=zxiang@iessacolomina.es
-ENV MYSQL_ROOT_PASSWORD=root
+	FROM mysql:5.7
+	LABEL mantainer=zxiang@iessacolomina.es
+	ENV MYSQL_ROOT_PASSWORD=root
 
 /OWASP /mysql/Dockerfile
 Crear un Dockerfile en el directorio examen/OWASP /mysql.
@@ -177,11 +173,11 @@ Las funciones de este Dockerfile son:
 Crear un mysql de la versión 5.7 para evitar el conflicto de autentificación.
 Generar una contraseña del usuario root.
 
-define('DB_HOST', 'owaspms');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
-define('DB_NAME', 'mutillidae');
-define('DB_PORT', 3306);
+	define('DB_HOST', 'owaspms');
+	define('DB_USERNAME', 'root');
+	define('DB_PASSWORD', 'root');
+	define('DB_NAME', 'mutillidae');
+	define('DB_PORT', 3306);
 
 
 Modificar el /OWASP/mutilidae/incluedes/database-config.inc
@@ -190,30 +186,27 @@ db_username es el nombre de usuario que quieres conectar. Tiene que ser el usuar
 db_paasword es la contraseña de usuario que quieres conectar.
 db_name es el nombre de la base de datos que quieres conectar.  Poner mutillidae.
 
-version: '3.2'
+	version: '3.2'
 
-services:
+	services:
 
-  owaspweb:
-	build:
-  	context: './'
+		owaspweb:
+		build:
+			context: './'
+		networks:
+			- nbtnetx
+		ports:
+			- 8082:80
+		container_name: owaspweb
+
+		owaspms:
+		build:
+			context: './mysql/'
+		networks:
+			- nbtnetx
+		container_name: owaspms
 	networks:
-   	- nbtnetx
-	ports:
-   	- 8082:80
-	container_name: owaspweb
-
-  owaspms:
-	build:
-  	context: './mysql/'
-	networks:
-   	- nbtnetx
-	container_name: owaspms
-networks:
-  nbtnetx:
-
-
-
+		nbtnetx:
 
 /OWASP/docker-compose.yml
 Las funciones del docker compose son:
