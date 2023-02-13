@@ -1,6 +1,6 @@
 # Tree_Vul_Webs
 # Aviso: En la carpeta DVWA no tiene la carpeta de la aplicación DVWA, hay que instalar en https://github.com/digininja/DVWA. Hay que Modificar el /examen/DVWA/DVWA/config/config.inc.php.disk.
-										# Manuel
+
 # 1. DVWA
 
 Descomprimir el archivo bWAPP que hemos descargado en la página web.
