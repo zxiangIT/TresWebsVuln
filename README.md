@@ -1,5 +1,5 @@
 # Tree_Vul_Webs
-# Aviso: En la carpeta DVWA no tiene la carpeta de la aplicación DVWA, hay que instalar en https://github.com/digininja/DVWA. Hay que Modificar el /examen/DVWA/DVWA/config/config.inc.php.disk.
+# Aviso: En la carpeta DVWA no tiene la carpeta de la aplicación DVWA, hay que instalar en https://github.com/digininja/DVWA. Modificar el /examen/DVWA/DVWA/config/config.inc.php.disk.
 
 # 1. DVWA
 
