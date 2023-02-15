@@ -275,3 +275,5 @@ Reiniciar apache con el comando
 sudo service apache2 restart.
 
 En la página web poner la IP y el nombre de la aplicación.
+
+Las páginas utiliza con el usuario root para entrar. Para obtener más seguridad, hay que añadir un usuario en el archivo mysql y modificar el archivo de la conexión. 
